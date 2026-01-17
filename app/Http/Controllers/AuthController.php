@@ -23,6 +23,21 @@ class AuthController extends Controller
             Auth::guard('karyawan')->logout();
              return redirect('/');
         }
-       
+
     }
+    public function logoutadmin(){
+        if(Auth::guard('user')->check()){
+            Auth::guard('user')->logout();
+             return redirect('/panel');
+        }
+    }
+
+     public function prosesloginadmin(Request $request)
+        {
+            if(Auth::guard('user')->attempt(['email'=>$request->email, 'password'=>$request->password])){
+                return redirect()->route('dashboardadmin');
+            } else {
+                return redirect('/panel')->with(['warning'=> 'Email atau Password salah']);
+            }
+        }
 }
