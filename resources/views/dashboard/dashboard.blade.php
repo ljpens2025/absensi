@@ -56,12 +56,12 @@
                         </div>
                         <div class="item-menu text-center">
                             <div class="menu-icon">
-                                <a href="" class="orange" style="font-size: 40px;">
-                                    <ion-icon name="location"></ion-icon>
+                                <a href="/proseslogout" class="orange" style="font-size: 40px;">
+                                   <ion-icon name="exit-outline"></ion-icon>
                                 </a>
                             </div>
                             <div class="menu-name">
-                                Lokasi
+                                Keluar
                             </div>
                         </div>
                     </div>

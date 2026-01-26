@@ -4,6 +4,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PresensiController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\DepartemenController;
 
 Route::middleware('guest:karyawan')->group(function (){
     Route::get('/', function () {
@@ -40,4 +42,16 @@ Route::middleware('auth:karyawan')->group(function () {
 Route::middleware('auth:user')->group(function () {
     Route::get('/dashboardadmin', [DashboardController::class, 'dashboardadmin'])->name('dashboardadmin');
     Route::get('/proseslogoutadmin', [AuthController::class, 'logoutadmin'])->name('logoutadmin');
+    // karyawan
+    Route::get('/dashboardadmin/karyawan', [KaryawanController::class, 'index'])->name('karyawan');
+    Route::post('/karyawan/store', [KaryawanController::class, 'store'])->name('storeKaryawan');
+    Route::post('/karyawan/edit', [KaryawanController::class, 'edit']);
+    Route::post('/karyawan/update', [KaryawanController::class, 'update']);
+    Route::post('/karyawan/delete/{nik}', [KaryawanController::class, 'delete'])->name('deleteKaryawan');
+    // Departemen
+    Route::get('/dashboardadmin/departemen', [DepartemenController::class, 'index'])->name('departemen');
+    Route::post('/departemen/store', [DepartemenController::class, 'store'])->name('storeDepartemen');
+    Route::post('/departemen/edit', [DepartemenController::class, 'edit']);
+    Route::post('/departemen/update', [DepartemenController::class, 'update']);
+    Route::post('/departemen/delete/{kode_dept}', [DepartemenController::class, 'delete'])->name('deleteDepartemen');
 });

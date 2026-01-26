@@ -14,15 +14,28 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         // Tambahkan logika ini:
         $middleware->redirectGuestsTo(function (Request $request) {
-            
-            // Logika: Jika user mencoba mengakses URL yang berhubungan dengan admin
-            // (misalnya: dashboardadmin, atau halaman lain yang diawali dashboardadmin)
+            // 1. Logika untuk user BELUM LOGIN (yang kita buat sebelumnya)
             if ($request->is('dashboardadmin*')) {
-                return route('loginadmin'); // Arahkan ke /panel
+                return route('loginadmin');
             }
-            
-            // Default: Jika bukan admin, arahkan ke login karyawan biasa
-            return route('login'); // Arahkan ke /
+            return route('login');
+        });
+
+        // 2. Logika untuk user SUDAH LOGIN (Tambahan Baru)
+        $middleware->redirectUsersTo(function (Request $request) 
+        {
+        
+            // Cek apakah user login menggunakan guard 'user' (Administrator)
+            if (auth()->guard('user')->check()) {
+                return route('dashboardadmin');
+            }
+            // Cek apakah user login menggunakan guard 'karyawan'
+            if (auth()->guard('karyawan')->check()) {
+                return route('dashboard');
+            }
+
+            // Default fallback (jika ada guard lain)
+            return '/';
         });
     })
     ->withExceptions(function (Exceptions $exceptions) {
