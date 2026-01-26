@@ -54,4 +54,7 @@ Route::middleware('auth:user')->group(function () {
     Route::post('/departemen/edit', [DepartemenController::class, 'edit']);
     Route::post('/departemen/update', [DepartemenController::class, 'update']);
     Route::post('/departemen/delete/{kode_dept}', [DepartemenController::class, 'delete'])->name('deleteDepartemen');
+    // monitoring presensi
+    Route::get('/dashboardadmin/monitoringpresensi', [PresensiController::class, 'monitoring'])->name('monitoringpresensi');
+    Route::post('/getpresensi', [PresensiController::class, 'getpresensi']);
 });

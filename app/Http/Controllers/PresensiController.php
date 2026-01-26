@@ -185,5 +185,24 @@ class PresensiController extends Controller
             return Redirect('/izin')->with(['error' => 'Gagal mengajukan Izin/Sakit']);
         }
     }
+    public function monitoring(){
+        return view('presensi.monitoring');
+    }
+
+   public function getpresensi(Request $request)
+    {
+        $tanggal = $request->tanggal;
+
+        // Ambil data presensi join dengan karyawan
+        $presensi = DB::table('presensi')
+            ->select('presensi.*', 'nama_lengkap', 'kode_dept')
+            ->join('karyawan', 'presensi.nik', '=', 'karyawan.nik')
+            ->where('tgl_presensi', $tanggal)
+            ->get();
+
+        // Return view (Laravel otomatis merender ini menjadi string HTML untuk AJAX)
+        // Pastikan path 'presensi.getpresensi' sesuai dengan folder view Anda
+        return view('presensi.getpresensi', compact('presensi'));
+    }
 }
 
