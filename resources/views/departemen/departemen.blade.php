@@ -226,6 +226,7 @@
             });
      });
     $('.edit').click(function(){
+        
         // Mengambil data kode dari atribut tombol edit
         // Pastikan di tombol edit tabel atributnya adalah 'kode_dept'
         // Contoh: <a href="#" class="edit" kode_dept="{{ $d->kode_dept }}">

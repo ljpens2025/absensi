@@ -204,5 +204,7 @@ class PresensiController extends Controller
         // Pastikan path 'presensi.getpresensi' sesuai dengan folder view Anda
         return view('presensi.getpresensi', compact('presensi'));
     }
+    
 }
+
 
