@@ -189,22 +189,51 @@ class PresensiController extends Controller
         return view('presensi.monitoring');
     }
 
-   public function getpresensi(Request $request)
+  public function getpresensi(Request $request)
     {
         $tanggal = $request->tanggal;
 
-        // Ambil data presensi join dengan karyawan
         $presensi = DB::table('presensi')
-            ->select('presensi.*', 'nama_lengkap', 'kode_dept')
+            ->select(
+                'presensi.*',
+                'karyawan.nama_lengkap',
+                'karyawan.kode_dept',
+                // AMBIL LATITUDE
+                // Logika: Ambil kata sebelum ' Longitude', lalu buang kata 'Latitude: '
+                DB::raw("TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(location_in, ' Longitude', 1), 'Latitude:', -1)) as latitude"),
+                
+                // AMBIL LONGITUDE
+                // Logika: Ambil semua kata setelah 'Longitude: '
+                DB::raw("TRIM(SUBSTRING_INDEX(location_in, 'Longitude:', -1)) as longitude")
+            )
             ->join('karyawan', 'presensi.nik', '=', 'karyawan.nik')
             ->where('tgl_presensi', $tanggal)
             ->get();
 
-        // Return view (Laravel otomatis merender ini menjadi string HTML untuk AJAX)
-        // Pastikan path 'presensi.getpresensi' sesuai dengan folder view Anda
         return view('presensi.getpresensi', compact('presensi'));
     }
-    
+    public function laporan()
+    {
+        $namabulan = ["","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+        $karyawan = DB::table('karyawan')->orderBy('nama_lengkap')->get();
+        return view('presensi.laporan',compact('namabulan','karyawan'));
+    }
+
+    public function cetaklaporan(Request $request)
+    {
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+        $nik = $request->nik;
+        $namabulan = ["","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+        $karyawan = DB::table('karyawan')->join('departemen','karyawan.kode_dept','=','departemen.kode_dept')
+        ->where('nik',$nik)->first();
+        $presensi = DB::table('presensi')->where('nik',$nik)
+        ->whereRaw('MONTH(tgl_presensi)="' . $bulan . '"')
+        ->whereRaw('YEAR(tgl_presensi)="' . $tahun . '"')
+        ->orderBy('tgl_presensi', 'ASC')
+        ->get();
+        return view('presensi.cetaklaporan',compact('namabulan','tahun','bulan','karyawan','presensi'));
+    }
 }
 
 

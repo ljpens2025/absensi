@@ -263,23 +263,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item dropdown">
-                
-              </li>
-              <li class="nav-item dropdown">
-              </li>
-              <li class="nav-item active dropdown">
-              </li>
-              <li class="nav-item dropdown">
-              </li>
-              <li class="nav-item dropdown">
-                <div class="dropdown-menu">
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <div class="dropdown-menu">
-                </div>
-              </li>
+              
               <li class="nav-item">
                 <a class="nav-link" href="/dashboardadmin/monitoringpresensi">
                   <span class="nav-link-icon d-md-none d-lg-inline-block"
@@ -288,6 +272,34 @@
                     </span>
                   <span class="nav-link-title"> Monitoring Presensi </span>
                 </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#navbar-base"
+                  data-bs-toggle="dropdown"
+                  data-bs-auto-close="false"
+                  role="button"
+                  aria-expanded="false"
+                >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2" /></svg>
+                  </span>
+                  <span class="nav-link-title">Laporan</span>
+                </a>
+                <div class="dropdown-menu">
+                  <div class="dropdown-menu-columns">
+                    <div class="dropdown-menu-column">
+                      <div class="dropend">
+                      </div>
+                      <a class="dropdown-item" href="/dashboardadmin/laporan"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>Presensi</a>
+                      <a class="dropdown-item" href="/dashboardadmin/departemen"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-building-skyscraper"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21l18 0" /><path d="M5 21v-14l8 -4v18" /><path d="M19 21v-10l-6 -4" /><path d="M9 9l0 .01" /><path d="M9 12l0 .01" /><path d="M9 15l0 .01" /><path d="M9 18l0 .01" /></svg> Rekap Presensi </a>
+                      <div class="dropend">
+                      </div>
+                      <div class="dropend">
+                      </div>
+                  </div>
+                </div>
               </li>
             </ul>
             <!-- END NAVBAR MENU -->
